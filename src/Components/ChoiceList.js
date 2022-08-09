@@ -17,6 +17,7 @@ const ChoiceList = ({ choices }) => {
   return (
     <StyledChoiceList>
       {choices.map(choice => <Button key={choice} text={`${choice}%`}/>)}
+      <Button text='Custom %' />
     </StyledChoiceList>
   )
 }

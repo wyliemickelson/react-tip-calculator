@@ -6,7 +6,7 @@ import { ReactComponent as personIcon } from '../assets/icon-person.svg'
 import styled from 'styled-components';
 import Calculations from './Calculations'
 
-const tipPercentages = [5, 10, 15, 25, 50, 'Custom ']
+const tipPercentages = [5, 10, 15, 25, 50]
 
 const StyledMain = styled.main`
   background-color: white;
