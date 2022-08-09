@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { StyledOptions } from '../Styles/Options.styled'
 import Option from './Option'
 import { ReactComponent as moneyIcon } from '../assets/icon-dollar.svg'
@@ -15,17 +15,33 @@ const StyledMain = styled.main`
 `
 
 const Main = () => {
+  const [billTotal, setBillTotal] = useState(0.00)
+  const [numPeople, setNumPeople] = useState(0)
+  const [selectedTipIndex, setSelectedTipIndex] = useState(0);
+
+  const handleSelectedTip = (tipPercentageIndex) => {
+    setSelectedTipIndex(tipPercentageIndex)
+  }
+
+  const handleBill = (e) => {
+    setBillTotal(e.target.value)
+  }
+
+  const handleNumPeople = (e) => {
+    setNumPeople(e.target.value)
+  }
+
   return (
     <StyledMain>
       <StyledOptions>
-        <Option title="Bill"
-          inputType={{ name: 'text', icon: moneyIcon, placeholder: 0 }} />
-        <Option title="Select Tip %"
+        <Option title="Bill" onChange={handleBill}
+          inputType={{ name: 'text', icon: moneyIcon, placeholder: '0.00' }} />
+        <Option title="Select Tip %" onChange={handleSelectedTip} selectedChoice={selectedTipIndex}
           inputType={{ name: 'choiceList', choices: tipPercentages }} />
-        <Option title="Number of People"
-          inputType={{ name: 'text', icon: personIcon, placeholder: 2 }} />
+        <Option title="Number of People" onChange={handleNumPeople}
+          inputType={{ name: 'text', icon: personIcon, placeholder: 0 }} />
       </StyledOptions>
-      <Calculations />
+      <Calculations numPeople={numPeople} billTotal={billTotal} tipPercentage={tipPercentages[selectedTipIndex]} />
     </StyledMain>
   )
 }

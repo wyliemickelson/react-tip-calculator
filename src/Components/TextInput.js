@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import styled from 'styled-components'
 const StyledTextInput = styled.div`
@@ -22,12 +22,19 @@ const StyledTextInput = styled.div`
   }
 `
 
-const TextInput = ({ Icon, placeholder }) => {
+const TextInput = ({ Icon, placeholder, onChange }) => {
+  const [inputValue, setInputValue] = useState(placeholder);
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value)
+    onChange(e);
+  }
 
   return (
     <StyledTextInput>
       <Icon />
-      <input type='number' placeholder={placeholder} />
+      <input type='number' value={inputValue} placeholder={placeholder}
+      onChange={handleChange} />
     </StyledTextInput>
   )
 }

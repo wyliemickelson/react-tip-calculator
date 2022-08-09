@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Button from './Button';
 import styled from 'styled-components';
 
@@ -13,11 +13,18 @@ const StyledChoiceList = styled.div`
   }
 `
 
-const ChoiceList = ({ choices }) => {
+const ChoiceList = ({ choices, selectedChoice, onChange }) => {
+const isCustomChoiceSelected = selectedChoice === choices.length;
+
   return (
     <StyledChoiceList>
-      {choices.map(choice => <Button key={choice} text={`${choice}%`}/>)}
-      <Button text='Custom %' />
+      {choices.map((choice, i) => {
+        if (i === selectedChoice) {
+          return <Button setSelected={onChange} index={i} key={i} text={`${choice}%`} selected={true} />
+        }
+        return <Button setSelected={onChange} index={i} key={i} text={`${choice}%`}/>
+      })}
+      <Button text='Custom %' setSelected={onChange} index={choices.length} selected={isCustomChoiceSelected} />
     </StyledChoiceList>
   )
 }

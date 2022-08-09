@@ -9,13 +9,13 @@ const StyledOption = styled.div`
   }
 `
 
-const Option = ({ title, inputType }) => {
+const Option = ({ title, inputType, onChange, selectedChoice }) => {
   return (
       <StyledOption>
         <h2>{title}</h2>
         {inputType.name === 'text' ? 
-        <TextInput Icon={inputType.icon} placeholder={inputType.placeholder} /> 
-        : <ChoiceList choices={inputType.choices} /> }
+        <TextInput onChange={onChange} Icon={inputType.icon} placeholder={inputType.placeholder} /> 
+        : <ChoiceList choices={inputType.choices} onChange={onChange} selectedChoice={selectedChoice} /> }
       </StyledOption>
   )
 }

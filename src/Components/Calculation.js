@@ -23,7 +23,6 @@ const StyledCalculation = styled.div`
   }
 `
 
-
 const Calculation = ({ title, number }) => {
   return (
     <StyledCalculation>
